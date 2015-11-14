@@ -20,6 +20,8 @@ module.exports = function(grunt) {
       return combined.concat(post.comments.data);
     }, []);
 
+    fbPostCommentData = fbPostCommentData.slice(0, 50);
+
     var appPostData = fbPostCommentData.map(function(post) {
 
       // Make the permalink
@@ -37,7 +39,7 @@ module.exports = function(grunt) {
       };
     });
 
-    grunt.file.write('data.json', JSON.stringify(appPostData));
+    grunt.file.write('public/data.json', JSON.stringify(appPostData));
     grunt.log.oklns("Wrote " + appPostData.length + " Facebook posts to data.json");
 
   });
