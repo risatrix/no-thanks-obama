@@ -18,7 +18,11 @@ module.exports = function(grunt) {
       };
     });
 
-    stringify(stripped, {quotedString: true}, function(err, output){
+    stringify(stripped, {
+      quotedString: true,
+      header: true,
+      columns: ['text', 'code']
+    }, function(err, output){
       grunt.file.write('for-coding.csv', output);
       grunt.log.oklns("Saved " + stripped.length + " rows of coding data to for-coding.csv");
       done();
