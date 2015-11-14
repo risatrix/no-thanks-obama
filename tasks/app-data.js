@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
   grunt.task.registerTask('appdata', 'Make the data files for our static app.', function() {
 
-    var fbData = grunt.file.readJSON('facebook_data_combined.json');
+    var fbData = grunt.file.readJSON('build/data/facebook_data_combined.json');
 
     var fbPostsWithComments = fbData.filter(function(post) {
       return post.hasOwnProperty('comments');

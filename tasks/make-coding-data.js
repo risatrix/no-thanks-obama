@@ -35,7 +35,7 @@ module.exports = function(grunt) {
      * Tweet text
      */
     /*
-    var tweets = grunt.file.readJSON('twitter_data_combined.json');
+    var tweets = grunt.file.readJSON('build/data/twitter_data_combined.json');
 
     var filtered = tweets.filter(function(tweet) {
       return tweet.is_quote_status || tweet.in_reply_to_screen_name === 'TexasTribune' || mentionAtStart(tweet, 'TexasTribune');
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
      * Filter our Facebook posts to an array with the comments from
      * each post
      */
-    var fbPosts = grunt.file.readJSON('facebook_data_combined.json');
+    var fbPosts = grunt.file.readJSON('build/data/facebook_data_combined.json');
 
     var fbPostsWithComments = fbPosts.filter(function(post) {
       return post.hasOwnProperty('comments');
