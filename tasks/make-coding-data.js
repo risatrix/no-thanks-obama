@@ -25,10 +25,16 @@ function mentionAtStart(tweet, handle) {
 
 module.exports = function(grunt) {
 
-  grunt.task.registerTask('codingdata', 'Write our raw Twitter data to CSV for coding', function() {
+  grunt.task.registerTask('codingdata', 'Write our raw social data to CSV for coding', function() {
 
     var done = this.async();
 
+    /**
+     * Filter our tweets to replices, clear mentions and quotes
+     * then reduce them all to an array that only contains our
+     * Tweet text
+     */
+    /*
     var tweets = grunt.file.readJSON('twitter_data_combined.json');
 
     var filtered = tweets.filter(function(tweet) {
@@ -40,14 +46,42 @@ module.exports = function(grunt) {
         text: tweet.text
       };
     });
+    */
 
-    stringify(stripped, {
+    /**
+     * Filter our Facebook posts to an array with the comments from
+     * each post
+     */
+    var fbPosts = grunt.file.readJSON('facebook_data_combined.json');
+
+    var fbPostsWithComments = fbPosts.filter(function(post) {
+      return post.hasOwnProperty('comments');
+    });
+
+    var fbPostCommentData = fbPostsWithComments.reduce(function(combined, post) {
+      return combined.concat(post.comments.data);
+    }, []);
+
+    var fbPostCommentText = fbPostCommentData.map(function(comment) {
+      return {
+        text: comment.message
+      };
+    });
+
+    /**
+     * Save the combined data for both social networks
+     */
+    // var combined = stripped.concat(fbPostCommentText);
+
+    fbPostCommentText = fbPostCommentText.slice(0, 100);
+
+    stringify(fbPostCommentText, {
       quotedString: true,
       header: true,
       columns: ['text', 'code']
     }, function(err, output){
       grunt.file.write('for-coding.csv', output);
-      grunt.log.oklns("Saved " + stripped.length + " rows of coding data to for-coding.csv");
+      grunt.log.oklns("Saved " + fbPostCommentText.length + " rows of coding data to for-coding.csv");
       done();
     });
 
