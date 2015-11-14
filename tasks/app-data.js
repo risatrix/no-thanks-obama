@@ -25,7 +25,10 @@ module.exports = function(grunt) {
         comment.post_img = post.icon;
 
         if(post.message) {
-          comment.post_text = post.message.substring(0, 30);
+          comment.post_text = post.message.substring(0, 60);
+          if(comment.post_text.length < post.message.length) {
+            comment.post_text += '...';
+          }
         }
         else {
           comment.post_text = post.story;
@@ -58,6 +61,7 @@ module.exports = function(grunt) {
         likes: post.like_count,
         time: post.created_time,
         post: {
+          id: post.post_id,
           text: post.post_text,
           img: post.post_img
         }
