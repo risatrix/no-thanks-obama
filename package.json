@@ -1,0 +1,23 @@
+{
+  "name": "no-thanks-obama",
+  "version": "0.0.0",
+  "dependencies": {
+    "csv-stringify": "0.0.8",
+    "grunt": "^0.4.5",
+    "natural": "^0.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/achavez/no-thanks-obama.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/achavez/no-thanks-obama/issues"
+  },
+  "homepage": "https://github.com/achavez/no-thanks-obama#readme"
+}
