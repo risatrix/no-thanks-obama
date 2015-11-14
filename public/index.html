@@ -6,12 +6,18 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
 </head>
 <body>
-
-  <div id="stream"></div>
-  <script type="text/template" id="tpl-stream-item">
-    <h4><%= id %></h4>
-    <p><%= text %></p>
-  </script>
+  <div class="container-fluid" style="max-width:700px;">
+    <div class="row">
+      <h1>No Thanks, Obama!</h1>
+      <div id="stream" class="col-md-12"></div>
+      <script type="text/template" id="tpl-stream-item">
+        <!--h4><%= id %></h4-->
+        <blockquote>
+        <p><%= text %></p>
+        </blockquote>
+      </script>
+    <div class="row">
   <script src="scripts.js"></script>
+  </div>
 </body>
 </html>
