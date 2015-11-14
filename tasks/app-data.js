@@ -1,3 +1,14 @@
+var natural = require('natural');
+
+/*
+function hasQuestionWords(text) {
+  var tokenizer = new natural.TreebankWordTokenizer(),
+      tokens = tokenizer.tokenize(text);
+
+  console.log(tokens);
+}
+*/
+
 module.exports = function(grunt) {
 
   grunt.task.registerTask('appdata', 'Make the data files for our static app.', function() {
@@ -11,6 +22,15 @@ module.exports = function(grunt) {
     var hydaredComments = fbPostsWithComments.map(function(post) {
       post.comments.data = post.comments.data.map(function(comment) {
         comment.post_id = post.id;
+        comment.post_img = post.icon;
+
+        if(post.message) {
+          comment.post_text = post.message.substring(0, 30);
+        }
+        else {
+          comment.post_text = post.story;
+        }
+
         return comment;
       });
       return post;
@@ -33,9 +53,14 @@ module.exports = function(grunt) {
       return {
         id: post.id,
         text: post.message,
-        permalink: permalink,
+        url: permalink,
         user: post.from,
-        likes: post.like_count
+        likes: post.like_count,
+        time: post.created_time,
+        post: {
+          text: post.post_text,
+          img: post.post_img
+        }
       };
     });
 

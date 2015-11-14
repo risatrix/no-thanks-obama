@@ -2,6 +2,7 @@
   "name": "no-thanks-obama",
   "version": "0.0.0",
   "dependencies": {
+    "csv-parse": "^1.0.0",
     "csv-stringify": "0.0.8",
     "grunt": "^0.4.5",
     "grunt-contrib-requirejs": "^0.4.4",

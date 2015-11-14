@@ -4,8 +4,14 @@ define(['marionette', 'itemviews/stream-item'], function(Mn, StreamItem) {
 
   return Mn.CollectionView.extend({
 
+    el: '#stream',
+
+    collectionEvents: {
+      'sync': 'render'
+    },
+
     childView: StreamItem
 
   });
 
-})
+});

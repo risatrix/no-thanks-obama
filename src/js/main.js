@@ -6,15 +6,10 @@ require(['jquery', 'collections/posts', 'collectionviews/stream.js'], function($
 
     window.p = new Posts();
 
-    window.stream = new Stream({
-      el: '#stream',
-      collection: p
-    });
+    p.fetch();
 
-    p.fetch({
-      success: function() {
-        stream.render();
-      }
+    window.stream = new Stream({
+      collection: p
     });
 
   });
