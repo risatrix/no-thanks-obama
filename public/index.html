@@ -9,7 +9,7 @@
   <div class="container-fluid" style="max-width:700px;">
     <h1>No Thanks, Obama!</h1>
     <div class="row">
-        <div id="filters">
+        <div id="filters" style="margin-bottom: .5em;">
             <div class="col-md-3">
                 <select class="form-control">
                     <option>Top Activity</option>
@@ -34,10 +34,15 @@
         </div>
 
         <div id="stream" class="col-md-12">
+            <h3>Tweets</h3>
             <script type="text/template" id="tpl-stream-item">
             <!--h4><%= id %></h4-->
             <blockquote>
                 <p><%= text %></p>
+                <footer><!--user goes here??--></footer>
+                <button type="button" class="btn btn-success">Respond</button>
+                <button type="button" class="btn btn-warning">Ignore</button>
+                <button type="button" class="btn btn-danger">Flag As Crazy</button>
             </blockquote>
             </script>
         </div>
