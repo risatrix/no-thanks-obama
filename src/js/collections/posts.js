@@ -30,7 +30,25 @@ define(['backbone', 'underscore', 'lunr', 'models/post'], function(Backbone, _, 
     },
 
     search: function(query) {
-      return this._idx.search(query);
+      var results = this._idx.search(query),
+          ids = _.pluck(results, 'ref');
+
+      this.forEach(function(model) {
+        var found = ids.indexOf(model.id) !== -1;
+        model.set('show', found, {silent: true});
+        if(found) {
+          model.set('score', _.findWhere(results, function(results) {
+            return results.ref === model.id;
+          }).score);
+        }
+      });
+
+      this.comparator = function(model) {
+        return model.get('score');
+      };
+      this.sort();
+
+      this.trigger('filtered');
     },
 
     model: Post,

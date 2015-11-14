@@ -7,7 +7,12 @@ define(['marionette', 'itemviews/stream-item'], function(Mn, StreamItem) {
     el: '#stream',
 
     collectionEvents: {
-      'sync': 'render'
+      'sync': 'render',
+      'filtered': 'render'
+    },
+
+    filter: function(model) {
+      return model.get('show');
     },
 
     childView: StreamItem
