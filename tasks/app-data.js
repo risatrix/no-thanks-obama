@@ -1,14 +1,3 @@
-var natural = require('natural');
-
-/*
-function hasQuestionWords(text) {
-  var tokenizer = new natural.TreebankWordTokenizer(),
-      tokens = tokenizer.tokenize(text);
-
-  console.log(tokens);
-}
-*/
-
 module.exports = function(grunt) {
 
   grunt.task.registerTask('appdata', 'Make the data files for our static app.', function() {
