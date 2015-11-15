@@ -1,4 +1,4 @@
-define(['marionette', 'itemviews/stream-item'], function(Mn, StreamItem) {
+define(['marionette', 'itemviews/stream-item-fb', 'itemviews/stream-item-tw'], function(Mn, StreamItemFb, StreamItemTw) {
 
   'use strict';
 
@@ -15,7 +15,14 @@ define(['marionette', 'itemviews/stream-item'], function(Mn, StreamItem) {
       return model.get('show');
     },
 
-    childView: StreamItem
+    getChildView: function(post) {
+      if(post.get('network') === 'fb') {
+        return StreamItemFb;
+      }
+      else {
+        return StreamItemTw;
+      }
+    }
 
   });
 

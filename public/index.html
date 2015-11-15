@@ -83,10 +83,15 @@
       color: white;
       font-size: 22px;
       padding: 7px;
+      text-align: center;
     }
 
     .social-network-fb {
       background: #3b5998;
+    }
+
+    .social-network-tw {
+      background: #55acee;
     }
   </style>
 </head>
@@ -137,7 +142,7 @@
         <div id="stream"></div>
       </div>
     </div>
-    <script type="text/template" id="tpl-stream-item">
+    <script type="text/template" id="tpl-stream-item-fb">
       <div class="post">
         <div class="social-network social-network-fb">
           <i class="fa fa-facebook"></i>
@@ -175,6 +180,44 @@
         </a>
       </div>
     </script>
+
+    <script type="text/template" id="tpl-stream-item-tw">
+      <div class="post">
+        <div class="social-network social-network-tw">
+          <i class="fa fa-twitter"></i>
+        </div>
+        <% if(typeof(user) !== 'undefined') { %>
+          <p class="meta">
+          <a href="https://www.twitter.com/<%= user.screen_name %>/" target="_blank">
+            <%= user.name %>
+          </a> <small>@<%= user.screen_name %></small>:
+        <% } %>
+        <p class="post-text">
+          <%= text %>
+        </p>
+        <div class="meta list-inline">
+          <li><i class="fa fa-heart"></i>
+            <%= favs %> favorites</li>
+          <li><i class="fa fa-retweet"></i>
+            <%= rts %> retweets</li>
+          <li class="pull-right">Posted
+            <%= time %>
+          </li>
+        </ul>
+      </div>
+      <div class="btn-group-actions">
+        <a href="<%= url %>" class="btn btn-default" target="_blank" title="Reply">
+          <i class="fa fa-reply"></i>
+        </a>
+        <a href="#" class="btn btn-default btn-hide" title="Hide">
+          <i class="fa fa-eye-slash"></i>
+        </a>
+        <a href="#" class="btn btn-default btn-flag" title="Flag">
+          <i class="fa fa-flag"></i>
+        </a>
+      </div>
+    </script>
+
     <script src="scripts.js"></script>
 </body>
 </html>

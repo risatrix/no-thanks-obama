@@ -16,7 +16,7 @@ define(['marionette'], function(Mn) {
       }.bind(this));
     },
 
-    template: '#tpl-stream-item'
+    template: '#tpl-stream-item-tw'
 
   });
 

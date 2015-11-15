@@ -7,23 +7,18 @@ define(['backbone', 'underscore', 'lunr', 'models/post'], function(Backbone, _, 
     initialize: function() {
       this._idx = lunr(function () {
         this.ref('id');
-        this.field('text', {boost: 10});
-        this.field('user');
+        this.field('text');
       });
     },
 
     parse: function(response) {
       _.each(response, function(post) {
-        var toIndex = {
-          text: post.text,
-          id: post.id
-        };
-
-        if(post.hasOwnProperty('user')) {
-          toIndex.user = post.user.name;
+        if(post.network === 'fb') {
+          this._idx.add({
+            text: post.text,
+            id: post.id
+          });
         }
-
-        this._idx.add(toIndex);
       }, this);
 
       response = _.map(response, function(model) {
@@ -47,22 +42,13 @@ define(['backbone', 'underscore', 'lunr', 'models/post'], function(Backbone, _, 
 
     search: function(query) {
       var results = this._idx.search(query),
-          ids = _.pluck(results, 'ref');
+          topResults = results.slice(0, 20),
+          ids = _.pluck(topResults, 'ref');
 
       this.forEach(function(model) {
         var found = ids.indexOf(model.id) !== -1;
         model.set('show', found, {silent: true});
-        if(found) {
-          model.set('score', _.findWhere(results, function(results) {
-            return results.ref === model.id;
-          }).score);
-        }
       });
-
-      this.comparator = function(model) {
-        return model.get('score');
-      };
-      this.sort();
 
       this.trigger('filtered');
     },
