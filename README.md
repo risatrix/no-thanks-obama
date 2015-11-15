@@ -1,10 +1,10 @@
-# No Thanks Obama
+# No "Thanks, Obama!"
 
 The problem: newsroom social media managers have a firehose of information to deal with. Some of it presents a chance for genuine engagement, but inevitably, much of it comes down to "Thanks, Obama!" or similarly unhelpful feedback.
 
 How to separate the noise from the signal?
 
-"No Thanks Obama" is a filtering and feedback loop tool for social media managers and reporters. It helps surface helpful feedback or important questions by dentifying relevant questions and comments and allowing for more meaningful engagement with the community.
+"No 'Thanks, Obama!'" is a filtering and feedback loop tool for social media managers and reporters. It helps surface helpful feedback or important questions by dentifying relevant questions and comments and allowing for more meaningful engagement with the community.
 
 Our demo focuses on Twitter and Facebook, but we hope to extend the functionality to comments, email, and beyond. We also started to research a keyword-based alogrithm to help order the information, using a scoring system to present the most relevant information first. Ideally, newsroom managers could customize this algorithm to reflect their individual audience.
 
