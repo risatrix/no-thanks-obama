@@ -8,7 +8,7 @@ How to separate the noise from the signal?
 
 Our demo focuses on Twitter and Facebook, but we hope to extend the functionality to comments, email, and beyond. We also started to research a keyword-based alogrithm to help order the information, using a scoring system to present the most relevant information first. Ideally, newsroom managers could customize this algorithm to reflect their individual audience.
 
-Made at SNDMakes Austin by @achavez, @risatrix, @chrismchaines & @mmmcgaha
+Made at SNDMakes Austin by @achavez, @risatrix, @chrismchaines & @mmmcgaha (with special thanks to @chriscoyier for the logo).
 
 ## Grunt tasks
 
