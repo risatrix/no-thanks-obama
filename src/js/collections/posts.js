@@ -23,10 +23,31 @@ define(['backbone', 'underscore', 'lunr', 'models/post'], function(Backbone, _, 
 
       response = _.map(response, function(model) {
         model.time = new Date(model.time);
+        model.score = _.random(0, 100);
         return model;
       });
 
       return response;
+    },
+
+    resort: function(method) {
+      if(method === 'score') {
+        this.comparator = function(model) {
+          return -model.get('score');
+        };
+      }
+      else if(method === 'time') {
+        this.comparator = function(model) {
+          return -model.get('time');
+        };
+      }
+
+      this.sort();
+      this.trigger('filtered');
+    },
+
+    comparator: function(model) {
+      return -model.get('score');
     },
 
     clear: function() {
