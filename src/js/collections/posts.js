@@ -26,7 +26,23 @@ define(['backbone', 'underscore', 'lunr', 'models/post'], function(Backbone, _, 
         this._idx.add(toIndex);
       }, this);
 
+      response = _.map(response, function(model) {
+        model.time = new Date(model.time);
+        return model;
+      });
+
       return response;
+    },
+
+    clear: function() {
+      this.forEach(function(model) {
+        model.set('show', true);
+      });
+      this.comparator = function(model) {
+        return -model.get('time');
+      };
+      this.sort();
+      this.trigger('filtered');
     },
 
     search: function(query) {

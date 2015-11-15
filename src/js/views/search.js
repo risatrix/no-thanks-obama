@@ -11,7 +11,15 @@ define(['backbone', 'underscore'], function(Backbone, _) {
     },
 
     doSearch: _.debounce(function(e) {
-      this.collection.search(this.$('#search-box').val());
+      var query = this.$('#search-box').val();
+
+      if(query !== '') {
+        this.collection.search(query);
+      }
+      else {
+        this.collection.clear();
+      }
+
     }, 300)
 
   });

@@ -32,7 +32,7 @@ module.exports = function(grunt) {
       return combined.concat(post.comments.data);
     }, []);
 
-    fbPostCommentData = fbPostCommentData.slice(0, 50);
+    fbPostCommentData = fbPostCommentData.slice(0, 100);
 
     var appPostData = fbPostCommentData.map(function(post) {
 
@@ -43,6 +43,7 @@ module.exports = function(grunt) {
                       '?comment_id=' + commentId;
 
       return {
+        question: post.message.indexOf('?') !== -1,
         id: post.id,
         text: post.message,
         url: permalink,

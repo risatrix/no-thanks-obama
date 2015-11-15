@@ -4,11 +4,14 @@
 <head>
   <title>No thanks, Obama</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,300italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+  <link href='//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Titillium+Web:400,400italic,600italic,600,700,700italic,900,300italic,300,200italic,200' rel='stylesheet' type='text/css'>
 
   <style>
     * {
-      font-family: 'Lato', sans-serif;
+      font-family: "PT Sans", sans-serif;
+      font-weight: 300;
     }
 
     .meta {
@@ -25,60 +28,120 @@
     }
 
     .post-text {
-      font-size: 22px;
-      font-weight: 300;
+      font-family: "PT Sans", sans-serif;
+      font-size: 1.2em;
+      font-weight: 400;
+      line-height: 1.4em;
+      margin-bottom: 1.2em;
     }
 
     .post {
-      margin-bottom: 25px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      padding: 15px 50px;
+      position: relative;
+      box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 150ms;
     }
 
-    ul.meta {
-      background: #f7f7f7;
-      padding: 5px 0 3px;
-      font-size: 12px;
+    #stream:hover .post:hover {
+      opacity: 1;
+      box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.2);
+    }
+
+    #stream:hover .post {
+      opacity: 0.85;
+      transition: opacity 150ms;
+    }
+
+    .btn-group-actions {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 35px;
+      bottom: 0;
+      opacity: .2;
+      transition: opacity 150ms;
+    }
+
+    .post:hover .btn-group-actions {
+      opacity: 1;
+    }
+
+    .btn-group-actions .btn {
+      width: 35px;
+      padding: 6px;
+      border-radius: 0;
+    }
+
+    .social-network {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 35px;
+      color: white;
+      font-size: 22px;
+      padding: 7px;
+    }
+
+    .social-network-fb {
+      background: #3b5998;
     }
   </style>
 </head>
 
 <body>
-  <div class="container-fluid" style="max-width:700px;">
+  <div class="container-fluid">
     <h1>No Thanks, Obama!</h1>
+    <hr />
     <div class="row">
-      <div id="filters">
-        <div class="col-md-3">
+      <div id="filters" class="col-xs-12 col-sm-3">
+        <div class="form-group">
+          <label for="time">Scoring method</label>
           <select class="form-control">
             <option>Top Activity</option>
             <option>Most Recent</option>
             <option>All Activity</option>
           </select>
         </div>
-        <div class="col-md-3">
-          <select class="form-control col-md-3">
+
+        <div class="form-group">
+          <label for="network">Social network</label>
+          <select class="form-control">
             <option>All Feeds</option>
             <option>Twitter</option>
             <option>Facebook Comments</option>
           </select>
         </div>
-        <div class="col-md-3">
-          <select class="form-control col-md-3">
+
+        <div class="form-group">
+          <label for="time">Post time</label>
+          <select class="form-control">
             <option>Last 24 Hours</option>
             <option>Last 72 Hours</option>
             <option>Forever</option>
           </select>
         </div>
-      </div>
-      <div id="search">
-        <div class="col-xs-12">
-          <div class="form">
-            <input id="search-box" class="form-control input-lg" type="text" placeholder="Search" />
+
+        <div id="search" class="form-group">
+          <label for="search-box">Filter by post text</label>
+          <div class="input-group">
+            <input id="search-box" class="form-control" type="text" placeholder="Search" />
+            <span class="input-group-addon"><i class="fa fa-filter"></i></span>
           </div>
         </div>
+
       </div>
-      <div id="stream" class="col-md-12"></div>
+      <div class="col-xs-12 col-sm-9">
+        <div id="stream"></div>
+      </div>
     </div>
     <script type="text/template" id="tpl-stream-item">
       <div class="post">
+        <div class="social-network social-network-fb">
+          <i class="fa fa-facebook"></i>
+        </div>
         <% if(typeof(user) !== 'undefined') { %>
           <p class="meta">
           <a href="https://www.facebook.com/<%= user.id %>/" target="_blank">
@@ -92,19 +155,24 @@
         <p class="post-text">
           <%= text %>
         </p>
-        <ul class="meta list-inline">
-          <li><i class="glyphicon glyphicon-hand-up"></i>
+        <div class="meta list-inline">
+          <li><i class="fa fa-thumbs-o-up"></i>
             <%= likes %> likes</li>
-          <li><i class="glyphicon glyphicon-share-alt"></i> <a href="<%= url %>" target="_blank">Reply</a></li>
           <li class="pull-right">Posted
             <%= time %>
           </li>
         </ul>
-        <div class="btn-group">
-          <button type="button" class="btn btn-success">Respond</button>
-          <button type="button" class="btn btn-warning">Ignore</button>
-          <button type="button" class="btn btn-danger">Flag As Crazy</button>
-        </div>
+      </div>
+      <div class="btn-group-actions">
+        <a href="<%= url %>" class="btn btn-default" target="_blank" title="Reply">
+          <i class="fa fa-reply"></i>
+        </a>
+        <a href="#" class="btn btn-default btn-hide" title="Hide">
+          <i class="fa fa-eye-slash"></i>
+        </a>
+        <a href="#" class="btn btn-default btn-flag" title="Flag">
+          <i class="fa fa-flag"></i>
+        </a>
       </div>
     </script>
     <script src="scripts.js"></script>
