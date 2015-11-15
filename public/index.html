@@ -93,6 +93,12 @@
     .social-network-tw {
       background: #55acee;
     }
+
+    label {
+      text-transform: uppercase;
+      color: #555;
+      font-size: 12px;
+    }
   </style>
 </head>
 
@@ -113,10 +119,10 @@
 
         <div class="form-group">
           <label for="network">Social network</label>
-          <select class="form-control">
-            <option>All Feeds</option>
-            <option>Twitter</option>
-            <option>Facebook Comments</option>
+          <select id="network-filter" class="form-control">
+            <option value="reset">- All Feeds -</option>
+            <option value="tw">Twitter</option>
+            <option value="fb">Facebook Comments</option>
           </select>
         </div>
 

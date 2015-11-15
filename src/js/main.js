@@ -2,8 +2,9 @@ require([
   'jquery',
   'collections/posts',
   'collectionviews/stream.js',
+  'collectionviews/filters.js',
   'views/search'
-], function($, Posts, Stream, Search) {
+], function($, Posts, Stream, Filters, Search) {
 
   'use strict';
 
@@ -14,6 +15,10 @@ require([
     p.fetch();
 
     new Search({
+      collection: p
+    });
+
+    new Filters({
       collection: p
     });
 

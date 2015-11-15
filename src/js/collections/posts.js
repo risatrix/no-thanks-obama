@@ -40,6 +40,14 @@ define(['backbone', 'underscore', 'lunr', 'models/post'], function(Backbone, _, 
       this.trigger('filtered');
     },
 
+    filterByNetwork: function(network) {
+      this.forEach(function(model) {
+        model.set('show', model.get('network') === network, {silent: true});
+      });
+
+      this.trigger('filtered');
+    },
+
     search: function(query) {
       var results = this._idx.search(query),
           topResults = results.slice(0, 20),
