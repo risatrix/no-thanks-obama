@@ -7,7 +7,8 @@ define(['marionette'], function(Mn) {
     el: '#filters',
 
     events: {
-      'change #network-filter': 'networkFilter'
+      'change #network-filter': 'networkFilter',
+      'change #change-sort': 'sortChange'
     },
 
     networkFilter: function() {
@@ -19,6 +20,12 @@ define(['marionette'], function(Mn) {
       else {
         this.collection.filterByNetwork(network);
       }
+    },
+
+    sortChange: function() {
+      var sort = this.$('#change-sort').val();
+
+      this.collection.resort(sort);
     }
 
   });

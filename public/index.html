@@ -14,6 +14,15 @@
       font-weight: 300;
     }
 
+    hr {
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 900;
+    }
+
     .meta {
       margin: 0;
       padding: 0;
@@ -32,7 +41,7 @@
       font-size: 1.2em;
       font-weight: 400;
       line-height: 1.4em;
-      margin-bottom: 1.2em;
+      margin-bottom: 10px;
     }
 
     .post {
@@ -74,6 +83,21 @@
       border-radius: 0;
     }
 
+    .score-bar {
+      height: 2px;
+      margin-bottom: 10px;
+      background-color: #5cb85c;
+    }
+
+    .score-bar-0,
+    .score-bar-1 {
+      background-color: #d9534f;
+    }
+
+    .score-bar-2 {
+      background-color: #f0ad4e;
+    }
+
     .social-network {
       position: absolute;
       top: 0;
@@ -104,23 +128,29 @@
 
 <body>
   <div class="container-fluid">
-    <h1>No Thanks, Obama!</h1>
+    <div class="row">
+      <div class="col-xs-2 col-xs-push-4">
+        <img class="img-responsive" src="obama-siren.gif" />
+      </div>
+      <div class="col-xs-2  col-xs-push-4">
+        <h1>No<br />Thanks,<br />Obama!</h1>
+      </div>
+    </div>
     <hr />
     <div class="row">
       <div id="filters" class="col-xs-12 col-sm-3">
         <div class="form-group">
-          <label for="time">Scoring method</label>
-          <select class="form-control">
-            <option>Top Activity</option>
-            <option>Most Recent</option>
-            <option>All Activity</option>
+          <label for="time">Sort by</label>
+          <select id="change-sort" class="form-control">
+            <option value="score">Score</option>
+            <option value="time">Post time</option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="network">Social network</label>
           <select id="network-filter" class="form-control">
-            <option value="reset">- All Feeds -</option>
+            <option value="reset">All Feeds</option>
             <option value="tw">Twitter</option>
             <option value="fb">Facebook Comments</option>
           </select>
@@ -128,7 +158,7 @@
 
         <div class="form-group">
           <label for="time">Post time</label>
-          <select class="form-control">
+          <select class="form-control" disabled>
             <option>Last 24 Hours</option>
             <option>Last 72 Hours</option>
             <option>Forever</option>
@@ -166,6 +196,7 @@
         <p class="post-text">
           <%= text %>
         </p>
+        <div class="score-bar score-bar-<%= Math.round(score / 25) %>" style="width:<%= score %>%"></div>
         <div class="meta list-inline">
           <li><i class="fa fa-thumbs-o-up"></i>
             <%= likes %> likes</li>
@@ -201,6 +232,7 @@
         <p class="post-text">
           <%= text %>
         </p>
+        <div class="score-bar score-bar-<%= Math.round(score / 25) %>" style="width:<%= score %>%"></div>
         <div class="meta list-inline">
           <li><i class="fa fa-heart"></i>
             <%= favs %> favorites</li>
